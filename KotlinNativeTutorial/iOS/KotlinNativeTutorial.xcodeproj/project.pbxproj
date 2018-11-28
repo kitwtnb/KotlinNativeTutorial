@@ -14,6 +14,8 @@
 		7F00011221AE98E500AA0F78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F00011021AE98E500AA0F78 /* LaunchScreen.storyboard */; };
 		7F00011D21AE98E600AA0F78 /* KotlinNativeTutorialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F00011C21AE98E600AA0F78 /* KotlinNativeTutorialTests.swift */; };
 		7F00012821AE98E600AA0F78 /* KotlinNativeTutorialUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F00012721AE98E600AA0F78 /* KotlinNativeTutorialUITests.swift */; };
+		7F00013621AE99FA00AA0F78 /* ShareCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F00013521AE99FA00AA0F78 /* ShareCode.framework */; };
+		7F00013721AE99FA00AA0F78 /* ShareCode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7F00013521AE99FA00AA0F78 /* ShareCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +35,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		7F00013821AE99FA00AA0F78 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7F00013721AE99FA00AA0F78 /* ShareCode.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		7F00010421AE98E300AA0F78 /* KotlinNativeTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KotlinNativeTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F00010721AE98E300AA0F78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +63,7 @@
 		7F00012321AE98E600AA0F78 /* KotlinNativeTutorialUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KotlinNativeTutorialUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F00012721AE98E600AA0F78 /* KotlinNativeTutorialUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KotlinNativeTutorialUITests.swift; sourceTree = "<group>"; };
 		7F00012921AE98E600AA0F78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7F00013521AE99FA00AA0F78 /* ShareCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ShareCode.framework; path = "../ShareCode/build/xcode-frameworks/ShareCode.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F00013621AE99FA00AA0F78 /* ShareCode.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +95,7 @@
 		7F0000FB21AE98E300AA0F78 = {
 			isa = PBXGroup;
 			children = (
+				7F00013521AE99FA00AA0F78 /* ShareCode.framework */,
 				7F00010621AE98E300AA0F78 /* KotlinNativeTutorial */,
 				7F00011B21AE98E600AA0F78 /* KotlinNativeTutorialTests */,
 				7F00012621AE98E600AA0F78 /* KotlinNativeTutorialUITests */,
@@ -132,9 +151,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7F00012C21AE98E600AA0F78 /* Build configuration list for PBXNativeTarget "KotlinNativeTutorial" */;
 			buildPhases = (
+				7F00013921AE9A7A00AA0F78 /* ShellScript */,
 				7F00010021AE98E300AA0F78 /* Sources */,
 				7F00010121AE98E300AA0F78 /* Frameworks */,
 				7F00010221AE98E300AA0F78 /* Resources */,
+				7F00013821AE99FA00AA0F78 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -249,6 +270,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7F00013921AE9A7A00AA0F78 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$SRCROOT/../ShareCode/build/xcode-frameworks\"\n./gradlew :ShareCode:packForXCode\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7F00010021AE98E300AA0F78 /* Sources */ = {
@@ -432,6 +473,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../ShareCode/build/xcode-frameworks";
 				INFOPLIST_FILE = KotlinNativeTutorial/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -449,6 +492,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../ShareCode/build/xcode-frameworks";
 				INFOPLIST_FILE = KotlinNativeTutorial/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
